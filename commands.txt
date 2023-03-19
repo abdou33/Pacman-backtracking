@@ -1,0 +1,21 @@
+python3 pacman.py   //lancer le programme principal
+python3 pacman.py --layout testMaze --pacman GoWestAgent  // exemple agent simple marche ouest
+python3 pacman.py --layout tinyMaze --pacman GoWestAgent  // exemple avec maze petit
+python3 pacman.py -h // helpe
+python3 pacman.py -l tinyMaze -p SearchAgent -a fn=tinyMazeSearch // exemple agent simple aller droit au but
+
+
+//DFS
+python3 pacman.py -l mediumMaze -p SearchAgent // pour les gens qui execute DFS (ajouter votre pgm a search.py fonction depthFirstSearch 
+python3 pacman.py -l bigMaze -z .5 -p SearchAgent  // grand maze pour les gens qui execute DFS (ajouter votre pgm a search.py fonction depthFirstSearch 
+/////////////////////
+
+//BFS
+python3 pacman.py -l mediumMaze -p SearchAgent -a fn=bfs // pour les gens qui execute BFS (ajouter votre pgm a search.py fonction depthFirstSearch
+python3 pacman.py -l bigMaze -p SearchAgent -a fn=bfs -z .5 // pour les gens qui execute BFS (ajouter votre pgm a search.py fonction depthFirstSearch
+
+///////////////////
+
+//Greedy or backtracking
+
+python3 pacman.py -l mediumMaze -p SearchAgent -a fn=ucs // pour les gens qui execute greedy (ajouter votre pgm a search.py fonction greedy_s
