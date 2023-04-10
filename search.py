@@ -118,6 +118,14 @@ def is_not_visited(list, posx, posy):
         return True
     return True
 
+def all_equal(iterator):
+    iterator = iter(iterator)
+    try:
+        first = next(iterator)
+    except StopIteration:
+        return True
+    return all(first == x for x in iterator)
+
 
 def greedy_s(problem):
     # two empty arrays to store the final path ands the visited points
@@ -153,7 +161,7 @@ def greedy_s(problem):
         # start 
         ifs_list = [([posX, posY-1], s), ([posX-1, posY], w), ([posX+1, posY], e), ([posX, posY+1], n)] # [s, w, e, n] with its directions
         #random.shuffle(ifs_list)
-        value = random.randint(0, 3)
+        #value = random.randint(0, 3)
         # print(value)
 
         d = random.choice(ifs_list)
@@ -161,18 +169,21 @@ def greedy_s(problem):
         condition = d[0]
         result = d[1] 
 
+        directions_check = {"south": False, "west": False, "east": False, "north": False}
+
         
-        if((not problem.walls[condition[0]][condition[1]])):
-            if(is_not_visited(visited_points, condition[0], condition[1])):
-                visited_points.append([posX,posY])
-                path.append(result)
-                posX = condition[0]
-                posY = condition[1]
-            else:
-                cpt = cpt + 1
+        if((not problem.walls[condition[0]][condition[1]]) & (is_not_visited(visited_points, condition[0], condition[1]))):
+            visited_points.append([posX,posY])
+            path.append(result)
+
+            posX = condition[0]
+            posY = condition[1]
+        else:
+            directions_check[result] = True
+            cpt = cpt + 1
             
         
-        if(cpt == 1):
+        if(cpt == 10):
             cpt = 0
             # if dead End pop last visited position
             print("\n\ndead end!!\n\n")
